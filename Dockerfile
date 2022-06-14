@@ -15,7 +15,7 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
     yum -y update
 
 # WireGuard server support
-RUN yum -y install wireguard-tools openvpn procps
+RUN yum -y --allowerasing install wireguard-tools pritunl-openvpn procps
 RUN yum -y remove iptables-services
 
 
