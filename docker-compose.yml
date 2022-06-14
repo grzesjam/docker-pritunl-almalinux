@@ -17,5 +17,6 @@ services:
 
   mongodb:
     image: mongo:5
+    restart: unless-stopped
     volumes:
       - './pritunl_db:/data/db'
