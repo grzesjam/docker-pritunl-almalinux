@@ -2,7 +2,7 @@ FROM almalinux:8
 # based on https://docs.pritunl.com/docs/installation#other-providers-oracle-linuxalmalinuxrocky-linuxrhel
 # https://github.com/pritunl/pritunl
 # https://wiki.almalinux.org/Comparison.html
-ENV PRITUNL_VERSION="1.30.3236.80"
+ENV PRITUNL_VERSION="1.30.3290.55"
 
 # Alternative import from download if keyserver offline
 RUN rpm --import https://raw.githubusercontent.com/pritunl/pgp/master/pritunl_repo_pub.asc
