@@ -16,7 +16,7 @@ services:
       - './pritunl_data:/var/lib/pritunl'
 
   mongodb:
-    image: mongo:5
+    image: mongo:6
     restart: unless-stopped
     volumes:
       - './pritunl_db:/data/db'
