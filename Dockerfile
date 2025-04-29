@@ -1,4 +1,4 @@
-FROM almalinux:8
+FROM almalinux:9
 # based on https://docs.pritunl.com/docs/installation#other-providers-oracle-linuxalmalinuxrocky-linuxrhel
 # https://github.com/pritunl/pritunl
 # https://wiki.almalinux.org/Comparison.html
@@ -11,13 +11,13 @@ COPY pritunl.repo /etc/yum.repos.d/pritunl.repo
 
 
 # AlmaLinux/Rocky Linux/RHEL
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
-    yum -y update
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm && \
+    yum -y update && \
+    yum -y --allowerasing install wireguard-tools pritunl-openvpn procps iproute policycoreutils && \
+    yum -y install pritunl-${PRITUNL_VERSION} && \
+    yum -y clean all
 
-# WireGuard server support and other needed bits
-RUN yum -y --allowerasing install wireguard-tools pritunl-openvpn procps iproute policycoreutils
 
-RUN yum -y install pritunl-${PRITUNL_VERSION} 
 COPY pritunl.conf /etc/pritunl.conf
 
 EXPOSE 80

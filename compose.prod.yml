@@ -1,19 +1,19 @@
-version: '3'
-
 services:
   pritunl:
-    build:
-      context: .
+    image: ghcr.io/grzesjam/docker-pritunl-almalinux:latest # replace with version
     privileged: true
     restart: unless-stopped
     ports:
       # UI
-      - '4443:443'
+      - "80:80" # needed for ACME challenge
+      - '443:443'
       # VPN
       - '1194:1194/udp'
       - '1194:1194/tcp'
     volumes:
       - './pritunl_data:/var/lib/pritunl'
+    depends_on:
+      - mongodb
 
   mongodb:
     image: mongo:6

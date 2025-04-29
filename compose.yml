@@ -1,0 +1,22 @@
+services:
+  pritunl:
+    build:
+      context: .
+    privileged: true
+    restart: unless-stopped
+    ports:
+      # UI
+      - '4443:443'
+      # VPN
+      - '1194:1194/udp'
+      - '1194:1194/tcp'
+    volumes:
+      - './pritunl_data:/var/lib/pritunl'
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:6
+    restart: unless-stopped
+    volumes:
+      - './pritunl_db:/data/db'
